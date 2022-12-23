@@ -12,10 +12,14 @@ public class ContactUs {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.webdriveruniversity.com/");
+        driver.manage().window().maximize();
 
-        WebElement ContactUs = driver.findElement(By.xpath("//*[@id=\"contact-us\"]/div/div[1]/h1"));
+
+        WebElement ContactUs = driver.findElement(By.xpath("//*[@id=\"contact-us\"]"));
         ContactUs.click();
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        // go to other tab
+
         driver.switchTo().window(tabs.get(1));
 
         WebElement FirstName = driver.findElement(By.id("text"));

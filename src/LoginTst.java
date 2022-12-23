@@ -3,23 +3,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-
-public class LoginTest {
+public class LoginTst {
     public static void main(String[] args) {
-
         System.setProperty("webdriver.chrome.driver", "/Users/ajitshrestha/Desktop/automation/chromedriver");
-        String username = "webdriver";
-        String password = "webdriver123";
 
         WebDriver driver = new ChromeDriver();
-        // chrome driver implements the WebDriver (interface)
-        driver.get("https://webdriveruniversity.com");
+        driver.get("https://webdriveruniversity.com/");
 
         driver.findElement(By.xpath("//*[@id=\"login-portal\"]/div/div[1]/h1")).click();
-
-        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        String username = (" ");
+        String password = (" ");
 
         driver.findElement(By.id("text")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
@@ -28,14 +29,14 @@ public class LoginTest {
 
         String message = driver.switchTo().alert().getText();
         System.out.println(message);
+
         if (message.equals("validation succeeded")) {
             System.out.println("Test case pass");
-        }else{
+        } else {
             System.out.println("Test case fail");
 
+            driver.quit();
+
         }
-
-
-
     }
 }

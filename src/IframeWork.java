@@ -17,6 +17,7 @@ public class IframeWork {
 
         WebElement introData = driver.findElement(By.xpath("//*[@id=\"content-wrapper\"]/ul/li[1]/ul/li[1]/a"));
         introData.click();
+        System.out.println(intro.getText());
 
     }
 }
